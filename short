@@ -1,0 +1,38 @@
+
+#include <bsd/string.h>
+gcc -lbsd -Wall -Werror -Wextra ft_putstr_non_printable.c && ./a.out | cat -e
+gcc -Wall -Werror -Wextra ex05.c main.c && ./a.out
+norminette -R CheckForbiddenSourceHeader
+
+
+#include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char str1[] = "hellohello";
+	char str2[6] = "";
+	char str3[6] = "";
+	
+	ft_strncpy(str2, str1, 7);
+	strncpy(str3, str1, 7);
+	printf("ft: %s\n", str2);
+	printf("..: %s\n", str3);
+
+	return 0;		
+}
+
+
+
+#include <stdio.h>
+#include <bsd/string.h>
+int main()
+{
+	char str1[] = "+++abc---";
+	char str2[] = "+abc";
+	
+	printf("org: %s\n", strstr(str1, str2));
+	printf("ft : %s\n", ft_strstr(str1, str2));
+
+	return 0;		
+}
